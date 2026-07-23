@@ -75,6 +75,35 @@ Q* = poisson.ppf(Fr, λ)
 
 支持 14 个中国城市，通过 open-meteo 免费 API 获取历史和预报数据。选"无天气数据"时仅用日历特征。数据本地 Parquet 缓存，增量更新。
 
+## 致谢
+
+本项目站在三位巨人的肩膀上，衷心感谢以下开源项目和作者：
+
+### 核心参考项目
+
+| 项目 | 作者 | 核心贡献 | 致谢 |
+|------|------|---------|------|
+| [Cafe-Demand-Forecasting-Reorder-Simulator](https://github.com/AmirhosseinHonardoust/Cafe-Demand-Forecasting-Reorder-Simulator) | Amirhossein Honardoust | 完整数据处理流水线、三模型回测框架、Streamlit 仪表板架构 | 提供了 V1 的架构蓝图和 V2 的 Streamlit 参考实现。数据清洗、按天汇总、缺失日期填 0、回测选优的逻辑均源自此项目。 |
+| [NewsvendorPoissonDemand](https://huggingface.co/spaces/geedubyuh/NewsvendorPoissonDemand) | geedubyuh | 纯泊松报童模型，代码不到 50 行，数学最干净 | 提供了核心公式 `Q* = poisson.ppf(Cu/(Cu+Co), λ)` 的 Python 实现。正是此项目让我们确信：泊松比正态更适合茶饮店。 |
+| [WasteNot](https://github.com/huangk430/WasteNot) | Kelly Huang | 泊松回归 + 外部特征（天气/节假日）的方法论验证 | 提供了"把天气和节假日塞进泊松回归"的学术验证。用德国餐厅两年数据证明了这条路的可行性，给我们升级 V2 的底气。 |
+
+### 数据与服务
+
+- **[open-meteo](https://open-meteo.com/)** — 完全免费的全球天气 API，无需注册，无需 API Key。提供 1940 年至今的历史天气和未来 16 天预报。
+- **[chinesecalendar](https://github.com/LKI/chinese-calendar)** — 中国法定节假日 Python 库，自动处理调休，让模型知道哪天是真放假、哪天是"假装上班"。
+
+### V2 整合思路
+
+```
+Cafe-Demand-Forecasting  →  数据处理流水线 + 三模型回测 + Streamlit 参考
+NewsvendorPoissonDemand  →  泊松报童模型 Q* = poisson.ppf(Fr, λ)
+WasteNot                 →  泊松回归 × 外部特征的方法论验证
+        ↓
+tea-shop-forecast V2  =  三者精华 × 中国本地化（天气+节假日+促销）
+```
+
+没有这些开源项目的无私分享，就没有这个脚本。如果大哥们的茶饮店生意因此多赚了钱，请给这三个项目的作者点个 Star。
+
 ## License
 
 MIT
