@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+weather_cache/
+_uploaded_temp.csv
+tea_shop_demo_v2.csv
+*.parquet
+.vscode/
+.idea/
