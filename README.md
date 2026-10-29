@@ -1,6 +1,14 @@
 # 茶饮店销量预测 + 智能备货系统 V2
 
-泊松回归（GLM）+ 报童模型，Streamlit 交互仪表板。整合周末、节假日、天气、促销等外部特征，透明可解释。
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
+![Streamlit](https://img.shields.io/badge/Streamlit-app-FF4B4B)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+**明天每个品类备多少杯？让数据算，别靠感觉。**
+
+茶饮店每天都在赌同一件事：备少了断货，备多了报废。这个系统把周末、节假日、天气、促销这些影响因素拟合进泊松回归，再用报童模型算出"缺货损失与报废损失平衡点"上的最优备货量。每一步都透明可解释，系数能看懂为什么。
+
+![仪表板总览：90 天演示数据、7 个品类，昆明天气已启用，下方是各品类明日备货量与四个模型的 MAE 对比](assets/dashboard.png)
 
 ## 快速开始
 
